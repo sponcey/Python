@@ -8,4 +8,4 @@ StringsGenerator was written by [@gardenpunk](https://github.com/lennyferguson) 
 * Lowercase
 * Numbers
 
-![Example of StringsGenerator in use](Python/Documentation/stringsgenerator.png)
+![Example of StringsGenerator in use](https://raw.githubusercontent.com/sponcey/Python/master/Documentation/stringsgenerator.png)
