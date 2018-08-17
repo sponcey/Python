@@ -7,3 +7,5 @@ StringsGenerator was written by [@gardenpunk](https://github.com/lennyferguson) 
 * Uppercase
 * Lowercase
 * Numbers
+
+![Example of StringsGenerator in use](Python/Documentation/stringsgenerator.png)
