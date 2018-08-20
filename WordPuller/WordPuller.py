@@ -9,6 +9,9 @@ f = open('lib/ukacd.txt', 'r')
 # Store content in a variable
 content = f.read()
 
+# close the file
+f.close()
+
 # Print the length of the string
 print(len(content))
 
@@ -22,7 +25,10 @@ def char_frequency(str1, char):
 
 print(char_frequency(content, '\n'))
 
-# close the file
-f.close()
+# Make list from content, using character breaks to divide list
+list(content)
+content_list = content.split('\n')
+
+print(content_list[500])
 
 # From a dictionary (list) of words (strings), search through the list, and randomly pull words of cascading length (str.leng()) (10, 9, 8, 7, ...)
