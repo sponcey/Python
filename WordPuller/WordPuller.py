@@ -1,7 +1,28 @@
-# From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).
+from __future__ import print_function
 
 
+# From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).0
+
+# Open text file for reading
+f = open('lib/ukacd.txt', 'r')
+
+# Store content in a variable
+content = f.read()
+
+# Print the length of the string
+print(len(content))
+
+# Count the number of spaces in content
+def char_frequency(str1, char):
+    count = 0
+    for n in str1:
+        if n == char:
+            count += 1
+    return count
+
+print(char_frequency(content, '\n'))
+
+# close the file
+f.close()
 
 # From a dictionary (list) of words (strings), search through the list, and randomly pull words of cascading length (str.leng()) (10, 9, 8, 7, ...)
-
-	
