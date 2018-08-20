@@ -1,5 +1,5 @@
 from __future__ import print_function
-
+import random
 
 # From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).0
 
@@ -25,10 +25,16 @@ def char_frequency(str1, char):
 
 print(char_frequency(content, '\n'))
 
-# Make list from content, using character breaks to divide list
+# Make list from content, using character breaks to divide list, and deleting all content up to first word in content
 list(content)
+
 content_list = content.split('\n')
 
-print(content_list[500])
+del content_list[0:25]
+
+print(content_list[4])
+
+# Print random word from list
+print(random.choice(content_list))
 
 # From a dictionary (list) of words (strings), search through the list, and randomly pull words of cascading length (str.leng()) (10, 9, 8, 7, ...)
