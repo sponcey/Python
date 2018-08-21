@@ -1,7 +1,7 @@
 from __future__ import print_function
 import random
 
-# From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).0
+# GOAL: From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).0
 
 # Open text file for reading
 f = open('lib/ukacd.txt', 'r')
@@ -29,19 +29,48 @@ content_list = content.split('\n')
 
 del content_list[0:25]
 
+# convert each string in the list to an integer representing the length of that string
+# def converttolength(listy):
+#     for n in listy[:]:
+#         len(n) = n
+        
+# content_list_length = converttolength(content_list)
+
 # if random word is a certain length, print it. if it isn't that length, keep looking until you find a random word of that length, then stop.
-#!! current problem: how do I redefine the random_word variable when the word isn't the desired length?
+## Problem: If user gives a length of a word that can't be found in the dictionary, Python will never be able to stop!!
 
 def wordlength(length):
+    # #first check if length is even in dictionary!
+    # ## how do I write this to stop looping once it's read every string?
+    # while True: 
+    #     for n in content_list[:]:
+    #         if len(n) != length:
+    #             return
+    #         elif len(n) == length:
+    #             continue
+    #         elif len(n) != length:
+    #             print("Couldn't find anything")
+    #             break
+    while True:
     # defining variable for random word
-    random_word = random.choice(content_list)
+        random_word = random.choice(content_list)
+    # since we have established there is a word of that legnth, print one of them!
+        if len(random_word) == length:
+            print(random_word)
+            break 
+            
+wordlength(4) 
     
-    if len(random_word) == length:
-        break
-    print(random_word)
-    elif len(random_word) != length:
-        continue
-        
-print(wordlength(5))
+# Now that the word length function is defined, nest that function in another function that iterates across a range of word lengths.
+
+# def wordlength_range(hichar, lowchar):
+#     while True:
+#         wordlength(hichar)
+#         if hichar != lowchar:
+#             hichar = hichar-1
+#         if hichar == lowchar:
+#             break
+            
+# wordlength_range(50,0)
     
-# From a dictionary (list) of words (strings), search through the list, and randomly pull words of cascading length (str.leng()) (10, 9, 8, 7, ...)
+# Mission Accomplished!!
