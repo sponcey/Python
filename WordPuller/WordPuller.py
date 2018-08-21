@@ -1,7 +1,9 @@
 from __future__ import print_function
 import random
 
-# GOAL: From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).0
+# GOAL: From a dictionary (list) of words (strings), search through the list, and randomly pull a word of determined length (i.e. 5 characters).
+
+## BUGS: When user inputs character value that is higher than any word in dictionary, program crashes/won't stop looking.
 
 # Open text file for reading
 f = open('lib/ukacd.txt', 'r')
