@@ -54,23 +54,33 @@ def wordlength(length):
     #             print("Couldn't find anything")
     #             break
     while True:
-    # defining variable for random word
+        # defining variable for random word
         random_word = random.choice(content_list)
-    # since we have established there is a word of that legnth, print one of them!
+        ## this is pretty much exactly the same as above! lol
+        # for n in content_list:
+        #     pickedword = len(n)
+        #     if length != pickedword:
+        #         return
+        #     if length == pickedword:
+        #         print("List contains word of this lenghth!")
+        #         continue
+        # since we have established there is a word of that legnth, print one of them!
         if len(random_word) == length:
             print(random_word)
             break 
-    
+
+wordlength(5)
+
 # Now that the word length function is defined, nest that function in another function that iterates across a range of word lengths.
 
-def wordlength_range(hichar, lowchar):
-    while True:
-        wordlength(hichar)
-        if hichar != lowchar:
-            hichar = hichar-1
-        if hichar == lowchar:
-            break
+# def wordlength_range(hichar, lowchar):
+#     while True:
+#         wordlength(hichar)
+#         if hichar != lowchar:
+#             hichar = hichar-1
+#         if hichar == lowchar:
+#             break
             
-wordlength_range(10,0)
+# wordlength_range(15,3)
     
 # Mission Accomplished!!
