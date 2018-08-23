@@ -69,18 +69,16 @@ def wordlength(length):
             print(random_word)
             break 
 
-wordlength(5)
-
 # Now that the word length function is defined, nest that function in another function that iterates across a range of word lengths.
 
-# def wordlength_range(hichar, lowchar):
-#     while True:
-#         wordlength(hichar)
-#         if hichar != lowchar:
-#             hichar = hichar-1
-#         if hichar == lowchar:
-#             break
+def wordlength_range(hichar, lowchar):
+    while True:
+        wordlength(hichar)
+        if hichar != lowchar:
+            hichar = hichar-1
+        if hichar == lowchar:
+            break
             
-# wordlength_range(15,3)
+wordlength_range(15,3)
     
 # Mission Accomplished!!
