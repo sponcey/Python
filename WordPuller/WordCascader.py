@@ -86,10 +86,13 @@ def sortWordsByWidth(wordlist, units, prints):
         if units-50 <= unitCount <= units+50:
             wordWidths.append(word)
     while True:
+        if len(wordWidths) <=1:
+            print("I couldn't find anything!")
+            break
         print(random.choice(wordWidths))
         if prints != 0:
             prints = prints-1
         if prints == 0:
             break
     
-sortWordsByWidth(content_list_caps, 4000, 10)
+sortWordsByWidth(content_list, 1200, 10)
