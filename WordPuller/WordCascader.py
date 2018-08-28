@@ -1,5 +1,7 @@
 ## WordCascader creates a function that, using three inputs (list, word width in units, number of words) generates a lists of perfectly justified words when set in the currently opened font. Pretty nifty! Much of the code is taken from Word-o-mat by Nina Stoessinger. <3
 
+## Next goal: generate lists of words that are of specified length
+
 from __future__ import print_function
 import random
 
@@ -95,4 +97,4 @@ def sortWordsByWidth(wordlist, units, prints):
         if prints == 0:
             break
     
-sortWordsByWidth(content_list, 1200, 10)
+sortWordsByWidth(content_list, 6000, 50)
