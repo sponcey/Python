@@ -2,11 +2,10 @@
 
 ## Next goal: generate lists of words that are of specified length
 
-from __future__ import print_function
 import random
 
 # Import dictionary as list
-text = open('lib/ukacd.txt', 'r')
+text = open('lib/ukacd.txt', 'r', encoding='latin1')
 content = text.read()
 text.close()
 list(content)
@@ -60,6 +59,7 @@ def fontCharacters(font):
 #         return 0
 
 # Function taken from Word-o-mat to look at words widths
+# Problem currently: Script is taking forever to load because it is 
 def sortWordsByWidth(wordlist, units, prints):
     wordWidths = []
     if f is not None:

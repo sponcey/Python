@@ -1,11 +1,32 @@
-# Using the Golden Ratio, start with a defined word width, and create a cascade of words from shortest to longest, across a certain amount of iterations.
-## I need a function I can put in sortWordsByWidth that can define new lists based on changing variables.
-### Scratch that. I should define a dictionary based on the list that measures the widths of the words. So every word has a value next to it that can be compared against the desired width. 
-
-from __future__ import print_function
 import random
 
 f = CurrentFont()
+
+# Read external text file and make it a list.
+text = open('lib/ukacd.txt', 'r', encoding='latin1')
+content = text.read()
+text.close()
+list(content)
+
+# # If external dict exists, read it and convert to dict.
+# if 
+#     text = open('lib/ukacd.txt', 'r')
+#     content = text.read()
+#     text.close()
+#     list(content)
+#     WordWidthDic = {}
+
+# Define Lists
+content_list = content.split('\n')
+del content_list[0:25]
+
+content_list_caps = []
+for word in content_list:
+    content_list_caps.append(word.upper())
+    
+content_list_sc = []
+for word in content_list:
+    content_list_sc.append(word.capitalize())
 
 def fontCharacters(font):
     if not font:
@@ -21,21 +42,9 @@ def fontCharacters(font):
                 pass
     return charset, gnames
 
-text = open('lib/ukacd.txt', 'r')
-content = text.read()
-text.close()
-list(content)
-
-content_list = content.split('\n')
-del content_list[0:25]
-    
-content_list_lc = []
-for word in content_list:
-    content_list_lc.append(word.lower())
-    
-WordWidthDic = {}
-
-# Function that takes the word list, and compiles a dictionary by first adding the word; then adding a list of values based on the measured glyphWidth of lowercase, uppercase, and sentence case.
+# Function that takes the word list, and compiles a dictionary by first adding the word; then adding a list (or tuple?) of values 
+# based on the measured glyphWidth of lowercase, uppercase, and sentence case.
+    ## Something isn't working!!   
 
 def MakeDic(wordlist):
     if f is not None:
@@ -45,8 +54,7 @@ def MakeDic(wordlist):
         fontChars = []
         glyphNames = []
      
-    # For every word in the list, measure its caps width, lower width, and sentence case list, and make that a list
-    ## Something isn't working!!    
+    # For every word in the list, measure its caps width, lower width, and sentence case list, and make that a list 
     for word in wordlist:
         capsword = word.upper()
         lowerword = word.lower()
@@ -72,5 +80,16 @@ def MakeDic(wordlist):
         # Put that list and its corresponding word into the WordWidthDic
         WordWidthDic.update({word: WordLen})
         
-MakeDic(content_list)
-print(WordWidthDic.head(3))
+# Biggest problem: Script is taking FOREVER 
+
+# Current Script: Go through and measuring the length of ALL WORDS, and make a list of words that are the desired LENGTH.
+
+# Better Script: 
+# FIRST: check to see if a temporary folder /resources/ exists in the root of the script. 
+# If it does, continue. 
+# If it doesn't, create a temp folder.
+# SECOND: Check to see if a temp dictionary of word length values exists in /resources/. 
+# If it doesn't, generate a dictionary containing the lengths of the words, and export that dictionary to /resources/. then print "New Dictionary Generated!"
+# If it does, then:
+    # Check to see if the font has been modified since the dictionary was generated. If it was, overwrite the old dict, and print "Dict Overwritten!"
+    # If the font hasn't been modified since the dictionary was generated, then continue.
