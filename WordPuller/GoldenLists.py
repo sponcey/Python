@@ -30,11 +30,12 @@ def fontCharacters(font):
 
 # If external dict exists, read it and convert to dict.
 if goldendict_look.exists():
-    text = open('lib/goldendict.txt', encoding='latin1')
-    content = text.read()
-    text.close()
-    list(content)
-    WordWidthDic = {}
+    goldendict = {}
+    with open('lib/goldendict.txt', encoding='latin1') as f:
+        for line in f:
+            (key, val) = line.split()
+            d[int(key)] = val
+            
 # If external dict doesn't exist, make one!
 else:
     goldendict = {}
