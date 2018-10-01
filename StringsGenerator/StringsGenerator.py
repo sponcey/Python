@@ -16,8 +16,9 @@ results = []
 
 for name in f.keys():
     g = f[name]
-    if g and g.unicode and g.mark and template[g.mark]:
-        c = unichr(g.unicode)
+    # Removed "if g and" because it was pulling out fractions for some reason?
+    if g.unicode and g.mark and template[g.mark]:
+        c = chr(g.unicode)
         # Append tuple of (color, glyph, template) to results
         results.append((g.mark, c , template[g.mark].format(c,c,c)))
 
