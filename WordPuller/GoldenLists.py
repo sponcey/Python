@@ -35,7 +35,7 @@ def fontCharacters(font):
     for g in font:
         if g.unicode is not None:
             try:
-                charset.append(unichr(int(g.unicode)))
+                charset.append(chr(int(g.unicode)))
                 gnames.append(g.name)
             except ValueError:
                 pass
@@ -83,7 +83,7 @@ if goldendict_look.exists():
                                 except:
                                     glyphWidth = 0
                             unitCount += glyphWidth
-                        LenList.append(unitCount)
+                        WordLength.append(unitCount)
                     WordWidth(word)
         # Put that list and its corresponding word into the WordWidthDic
                     goldendict.update({word: WordLength})
