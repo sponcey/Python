@@ -21,8 +21,11 @@ content_list_sc = []
 for word in content_list:
     content_list_sc.append(word.upper())
 
-shuffled = random.shuffle(content_list_sc)
-    
+def randomly(seq):
+    shuffled = list(seq)
+    random.shuffle(shuffled)
+    return shuffled
+        
 lists_zipped = list(zip(content_list, content_list_caps, content_list_sc))
 
 # Path to Dictionary
@@ -49,7 +52,6 @@ def fontCharacters(font):
 
 
 def sortWordsByWidth(wordlist, units, prints):
-    wordWidths = []
     if f is not None:
         fontChars, glyphNames = fontCharacters(f)
         glyphNamesForValues = {fontChars[i]: glyphNames[i] for i in range(len(fontChars))}
@@ -59,30 +61,36 @@ def sortWordsByWidth(wordlist, units, prints):
     
     # This for loop is eating up SO MUCH PROCESSING TIME. Is there a simpler way to write this to get a quicker result? Do I really need
     # it to measure EVERY SINGLE word in the dictionary?
-    while prints >= 0 and wordlist == True:        
-        for word in wordlist:
-            wordposition = wordlist.index(word)
-            unitCount = 0
-            for char in word:
+    printcounter = prints     
+    for word in wordlist:
+        if printcounter >= 1 and len(wordlist) >= 1:
+            continue
+        elif printcounter == 0 or len(wordlist) == 0:
+            print ("Couldn't find anything!")
+            break
+        unitCount = 0
+        for char in word:
+            try:
+                glyphWidth = f[char].width
+            except:
                 try:
-                    glyphWidth = f[char].width
+                    gname = glyphNamesForValues[char]
+                    glyphWidth = f[gname].width
                 except:
-                    try:
-                        gname = glyphNamesForValues[char]
-                        glyphWidth = f[gname].width
-                    except:
-                        glyphWidth = 0
-                unitCount += glyphWidth
-            # # add kerning
-            # for i in range(len(word)-1):
-            #     pair = list(word[i:i+2])
-            #     unitCount += int(findKerning(pair))
-            if units-50 <= unitCount <= units+50:
-                print(word)
-                prints = prints-1
-            del wordlist[wordposition]
-            if len(wordlist) == 0:
-                print("Couldn't find anything!")
+                    glyphWidth = 0
+            unitCount += glyphWidth
+        # # add kerning
+        # for i in range(len(word)-1):
+        #     pair = list(word[i:i+2])
+        #     unitCount += int(findKerning(pair))
+        if units-50 <= unitCount <= units+50:
+            print(word)
+            printcounter -= 1
+        wordposition = wordlist.index(word)
+        del wordlist[wordposition]
+        if len(wordlist) == 0:
+            print("Couldn't find anything!")
+        
 
         # if len(wordWidths) == 0:
         #     print("I couldn't find anything!")
@@ -93,7 +101,7 @@ def sortWordsByWidth(wordlist, units, prints):
         #         prints = prints-1
         #     else:
         #         print("All done!")
-    
-sortWordsByWidth(shuffled, 3000, 5)
+
+sortWordsByWidth(randomly(content_list_sc), 3000, 5)
 
 
