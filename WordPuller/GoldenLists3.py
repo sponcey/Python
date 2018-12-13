@@ -13,6 +13,11 @@ list(content)
 content_list = content.split('\n')
 del content_list[0:25]
 
+## USER INPUT AREA ##
+
+tolerance = input("Tolerance of word width? Answer with a positive value: ")
+usercase = input("")
+
 content_list_caps = []
 for word in content_list:
     content_list_caps.append(word.capitalize())
@@ -60,14 +65,13 @@ def sortWordsByWidth(wordlist, units, prints):
         glyphNames = []
     
     # This for loop is eating up SO MUCH PROCESSING TIME. Is there a simpler way to write this to get a quicker result? Do I really need
-    # it to measure EVERY SINGLE word in the dictionary?
-    printcounter = prints     
+    # it to measure EVERY SINGLE word in the dictionary?   
     for word in wordlist:
-        if printcounter >= 1 and len(wordlist) >= 1:
-            continue
-        elif printcounter == 0 or len(wordlist) == 0:
-            print ("Couldn't find anything!")
+        if prints == 0 or len(wordlist) == 0:
             break
+        # elif printcounter == 0 and len(wordlist) == 0:
+        #     print ("Couldn't find anything!")
+        #     break
         unitCount = 0
         for char in word:
             try:
@@ -83,13 +87,11 @@ def sortWordsByWidth(wordlist, units, prints):
         # for i in range(len(word)-1):
         #     pair = list(word[i:i+2])
         #     unitCount += int(findKerning(pair))
-        if units-50 <= unitCount <= units+50:
+        if units-tolerance <= unitCount <= units+tolerance:
             print(word)
-            printcounter -= 1
+            prints = prints - 1
         wordposition = wordlist.index(word)
         del wordlist[wordposition]
-        if len(wordlist) == 0:
-            print("Couldn't find anything!")
         
 
         # if len(wordWidths) == 0:
@@ -103,5 +105,3 @@ def sortWordsByWidth(wordlist, units, prints):
         #         print("All done!")
 
 sortWordsByWidth(randomly(content_list_sc), 3000, 5)
-
-
