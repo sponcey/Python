@@ -1,22 +1,37 @@
-## Golden Lists 2 ##
+##### GOLDEN LISTS v.1 ########################################################
+
+## ABOUT GOLDEN LISTS:
+##     This is the first version of Golden Lists! Golden Lists takes a desired word width, a tolerance,
+##     word case, and a number words, and spits out words that are all exactly the same width, based on
+##     whatever current font you have open!
+
+## TO DO FOR FUTURE VERSIONS: 
+##    – Build for more language support. English support only at the moment.
+##    – Make a cool GUI so it's easier to input information.
+##    – Word widths that take kerning into account.
+
+## KNOWN BUGS:
+##    – If there are no words in the dictionary that match desired width, script won't stop running :\
+
+## CREDITS:
+##    Thanks to Nina Stoessinger for word-o-mat. This script builds off of some of the code
+##    from that wonderful script.
 
 import random, json, os, time
 from pathlib import Path
 
 f = CurrentFont()
 
+##### ENGLISH DICTIONARIES #################################################
+
 # Read external text file and make it a list.
 text = open('lib/ukacd.txt', 'r', encoding='latin1')
 content = text.read()
 text.close()
 list(content)
+
 content_list = content.split('\n')
 del content_list[0:25]
-
-## USER INPUT AREA ##
-
-tolerance = input("Tolerance of word width? Answer with a positive value: ")
-usercase = input("")
 
 content_list_caps = []
 for word in content_list:
@@ -25,19 +40,25 @@ for word in content_list:
 content_list_sc = []
 for word in content_list:
     content_list_sc.append(word.upper())
+    
+##### USER INPUT AREA ######################################################
+
+wordwidth = 3000              # how wide you want the word to be in units
+tolerance = 50                # tolerance of how much wider or narrower word can be
+usercase = content_list_sc    # choose from lists in English dictionaries (more languages to come!)
+numofwords = 5                # number of words to spit out
+
+##### DEFINING FUNCTIONS AREA ##############################################
+
+## Function that randomly shuffles list.
 
 def randomly(seq):
     shuffled = list(seq)
     random.shuffle(shuffled)
     return shuffled
-        
-lists_zipped = list(zip(content_list, content_list_caps, content_list_sc))
 
-# Path to Dictionary
-goldendict_look = Path('lib/tempdict.txt')
-goldendict = {0:1, 2:3}
+## Function that defines list of characters in font
 
-# Function that defines list of characters in font
 def fontCharacters(font):
     if not font:
         return []
@@ -52,9 +73,7 @@ def fontCharacters(font):
                 pass
     return charset, gnames
 
-# usercase = input("all lower, Capitalized, or ALL CAPS? ")
-# userwidth = input("How many units wide? ")
-
+## Function that takes wordlist, units, number of prints, and gives back what you want!
 
 def sortWordsByWidth(wordlist, units, prints):
     if f is not None:
@@ -90,18 +109,12 @@ def sortWordsByWidth(wordlist, units, prints):
         if units-tolerance <= unitCount <= units+tolerance:
             print(word)
             prints = prints - 1
-        wordposition = wordlist.index(word)
-        del wordlist[wordposition]
-        
+        if wordlist.index(word) == len(wordlist)-1:
+            print("Couldn't find anything!")
+            break        
 
-        # if len(wordWidths) == 0:
-        #     print("I couldn't find anything!")
-        # elif len(wordWidths) >= 1:
-        #     print(len(wordWidths))
-        #     while prints != 0:
-        #         print(random.choice(wordWidths))
-        #         prints = prints-1
-        #     else:
-        #         print("All done!")
+##### FUNCTION CALL ##############################################
 
-sortWordsByWidth(randomly(content_list_sc), 3000, 5)
+sortWordsByWidth(randomly(usercase), wordwidth, numofwords)
+
+##### THE END! ###################################################
