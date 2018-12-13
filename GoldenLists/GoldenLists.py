@@ -43,10 +43,10 @@ for word in content_list:
     
 ##### USER INPUT AREA ######################################################
 
-wordwidth = 3000              # how wide you want the word to be in units
+wordwidth = 750              # how wide you want the word to be in units
 tolerance = 50                # tolerance of how much wider or narrower word can be
 usercase = content_list_sc    # choose from lists in English dictionaries (more languages to come!)
-numofwords = 5                # number of words to spit out
+numofwords = 50                # number of words to spit out
 
 ##### DEFINING FUNCTIONS AREA ##############################################
 
@@ -86,7 +86,8 @@ def sortWordsByWidth(wordlist, units, prints):
     # This for loop is eating up SO MUCH PROCESSING TIME. Is there a simpler way to write this to get a quicker result? Do I really need
     # it to measure EVERY SINGLE word in the dictionary?   
     for word in wordlist:
-        if prints == 0 or len(wordlist) == 0:
+        if word == False:
+            print("Couldn't find anything else!")
             break
         # elif printcounter == 0 and len(wordlist) == 0:
         #     print ("Couldn't find anything!")
