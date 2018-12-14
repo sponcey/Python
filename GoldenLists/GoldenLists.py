@@ -43,10 +43,10 @@ for word in content_list:
     
 ##### USER INPUT AREA ######################################################
 
-wordwidth = 750              # how wide you want the word to be in units
+wordwidth = 5000              # how wide you want the word to be in units
 tolerance = 50                # tolerance of how much wider or narrower word can be
 usercase = content_list_sc    # choose from lists in English dictionaries (more languages to come!)
-numofwords = 50                # number of words to spit out
+numofwords = 5                # number of words to spit out
 
 ##### DEFINING FUNCTIONS AREA ##############################################
 
@@ -88,6 +88,8 @@ def sortWordsByWidth(wordlist, units, prints):
     for word in wordlist:
         if word == False:
             print("Couldn't find anything else!")
+            break
+        if prints == 0:
             break
         # elif printcounter == 0 and len(wordlist) == 0:
         #     print ("Couldn't find anything!")

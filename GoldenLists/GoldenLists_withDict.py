@@ -11,7 +11,7 @@
 ##    – Word widths that take kerning into account.
 
 ## KNOWN BUGS:
-##    – If there are no words in the dictionary that match desired width, script won't stop running :\
+##    – Script takes forever to run!
 
 ## CREDITS:
 ##    Thanks to Nina Stoessinger for word-o-mat. This script builds off of some of the code
@@ -43,10 +43,10 @@ for word in content_list:
     
 ##### USER INPUT AREA ######################################################
 
-wordwidth = 750              # how wide you want the word to be in units
+wordwidth = 5000              # how wide you want the word to be in units
 tolerance = 50                # tolerance of how much wider or narrower word can be
 usercase = content_list_sc    # choose from lists in English dictionaries (more languages to come!)
-numofwords = 50                # number of words to spit out
+numofwords = 5                # number of words to spit out
 
 ##### DEFINING FUNCTIONS AREA ##############################################
 
@@ -124,3 +124,24 @@ sortWordsByWidth(randomly(usercase), wordwidth, numofwords)
 ## Next, rebuild for loop so that everytime it looks at it a word, it simply finds the corresponding
 ## width value for that letter, and adds it all together.
 ## Only accesses the font information once at the beginning. This could work!
+
+glyphwidths = {}
+
+def GlyphWidths():
+    if f is not None:
+        fontChars, glyphNames = fontCharacters(f)
+        glyphNamesForValues = {fontChars[i]: glyphNames[i] for i in range(len(fontChars))}
+    else:
+        fontChars = []
+        glyphNames = []
+    
+    for char in f:
+        try:
+            glyphwidth = f[char].width
+        except:
+                try:
+                    gname = glyphNamesForValues[char]
+                    glyphWidth = f[gname].width
+                except:
+                    glyphWidth = 0
+        glyphwidths[char] = glyphWidth
